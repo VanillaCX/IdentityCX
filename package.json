@@ -1,10 +1,9 @@
 {
-    "name": "expresstemplate",
-    "version": "1.0.1",
+    "name": "authenticationapp",
+    "version": "1.0.2",
     "description": "",
     "main": "index.js",
     "scripts": {
-      "test": "nodemon ./tests/index.js",
       "dev": "nodemon index.js"
     },
     "keywords": [],

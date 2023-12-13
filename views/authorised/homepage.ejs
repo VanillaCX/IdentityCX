@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../common/partials/head'); %>
 </head>
 <body>
-    <a href="/sign-out">Sign-out</a>
-    <h1>Welcome <%=screenname%></h1>
+    <h1>Matter.CX</h1>
+    <h2>Headless Content Management</h2>
+    <p>Welcome <%=screenname%></p>
+    <nav>
+        <a href="/sign-out" class="solid">Sign-out</a>
+    </nav>
 </body>
 </html>

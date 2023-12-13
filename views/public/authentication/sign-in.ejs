@@ -1,25 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../../common/partials/head'); %>
 </head>
 <body>
-    <h1>Login</h1>
-    <h2>Please enter your username and password</h2>
+    <h1>Matter.CX</h1>
+    <h2>Headless Content Management</h2>
+    <br>
     <form method="post">
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Enter username" />
-
+        <br>
         <label for="password">Password</label>
         <input type="text" name="password" placeholder="Enter password" />
+        <br>
         
-        <button type="submit">Login</button>
+        <button type="submit" class="solid">Connect</button>
 
         <a href="/recover-username">Forgotten username ?</a>
         <a href="/recover-password">Forgotten password ?</a>
-        <a href="/sign-up">Signup</a>
+        
     </form>
 </body>
 </html>

@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <%- include('../../common/partials/head'); %>
 </head>
 <body>
-    <h1>Signup</h1>
-    <h2>Please enter your username and password</h2>
+    <h1>Matter.CX</h1>
+    <h2>Create account</h2>
+    <p>Choose a user name and a password to create an account. A screenname is optional.</p>
     <form method="post">
-        <input type="hidden" name="otp" value="" />
         <label for="username">Username</label>
         <input type="text" name="username" placeholder="Enter username" />
-
-        <label for="screenname">Screen Name (optional)</label>
+        <br>
+        <!--
+            <label for="screenname">Screen Name (optional)</label>
         <input type="text" name="screenname" placeholder="Enter screen name" />
-
+        <br>
+        -->
         <label for="password">Password</label>
         <input type="text" name="password" placeholder="Enter password" />
+        <br>
         
-        <button type="submit">Signup</button>
+        <button type="submit" class="solid">Create Account</button>
 
-        <a href="/sign-in">Signin</a>
+        <a href="/sign-in">Sign-in</a>
+        
     </form>
 </body>
 </html>

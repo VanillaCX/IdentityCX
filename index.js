@@ -48,14 +48,11 @@ app.use("/account", authorisedRoute)
 
 // Fallback for un-matched requests
 app.use((req, res) => {
-    console.group(`REQUEST NOT COVERED`);
-    console.log("req.originalUrl:", req.originalUrl);
-    console.groupEnd();
-
+    // Requested resource doesnt exist. Return a 404
     const resourceErr = new ResourceError(req.originalUrl, 404);
 
     res.status(resourceErr.status.code)
-       .render("errors/resource", {resourceErr})
+       .render("common/errors/resource", {resourceErr})
 })
 
 app.listen(port, () => console.log(`Server listening on port: ${port}`));

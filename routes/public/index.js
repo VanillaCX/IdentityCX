@@ -8,6 +8,7 @@ router.use((req, res, next) => {
     next()
 })
 
+// Redirect authorised users to /account page. Used as a router method.
 const blockSignedInUsers = (req, res, next) => {
     const sessionStore = new StoreCX(req, "sessionStore");
     const isAuthenticated = sessionStore.get("authenticated");
@@ -18,8 +19,6 @@ const blockSignedInUsers = (req, res, next) => {
         next();
     }
 }
-
-
 
 
 
@@ -41,29 +40,35 @@ router.route("/sign-in")
     .all(blockSignedInUsers)
     .get((req, res) => {
         res.render("public/authentication/sign-in");
-
     })
     .post(async (req, res, next) => {
         try {
+            // Get form variables from request body
             const form = req.body;
             const username = form.username;
             const password = form.password;
 
-            if(!username || !password){
-                throw new Error("MISSING_FORM_DATA");
+            // Throw error if no username supplied
+            if(!username){
+                throw new ReferenceError("USERNAME");
             }
 
-            const user = await Authenticator.authenticate(username, password);
-            console.log("Authenticated:", user);
+            // Throw error if no password supplied
+            if(!password){
+                throw new ReferenceError("PASSWORD");
+            }
 
+            // Authenticate user (Authenticator will throw error if unable to authenticate credentials)
+            const user = await Authenticator.authenticate(username, password);
+
+            // Create a session store and save users data
             const sessionStore = new StoreCX(req, "sessionStore");
             await sessionStore.set("user", user.toJson());
 
+            // Check if user has registered an Authenticator App for MFA.
             if(user.hasRegisteredOTP){
-                // Go to MFA sign in
                 res.redirect("/two-factor-sign-in")
             } else {
-                // Not yet registered the Authenticator App
                 res.redirect("/register-authenticator-app")
             }
 
@@ -85,24 +90,34 @@ router.route("/two-factor-sign-in")
     })
     .post(async (req, res, next) => {
         try {
+            // Create StoreCX class instance to manipulate "sessionStore"
             const sessionStore = new StoreCX(req, "sessionStore");
+
+            // Create User class instance to manipulate user account
             const user = new User(sessionStore.get("user"));
 
+            // Collect form variables
             const form = req.body;
             const otp = form.otp;
 
+
+            // Throw error if no otp supplied
             if(!otp){
-                throw new Error("MISSING_OTP")
+                throw new ReferenceError("OTP")
             }
 
+            // Check if the otp supplied by user is valid
             const valid = user.OTP.check(otp);
 
+            // Invalid otp. Handle error below
             if(!valid){
                 throw new Error("INVALID_OTP");
             }
 
+            // OTP is valid so set user as authenticated
             await sessionStore.set("authenticated", true);
 
+            // Display main page for authenticated users
             res.redirect("/account");
             
         } catch(error){
@@ -177,7 +192,12 @@ router.route("/sign-up")
 
             const user = await Authenticator.createAccount(username, password, screenname);
 
-            console.log("Created new user, user:", user);
+            // Create a session store and save users data
+            const sessionStore = new StoreCX(req, "sessionStore");
+            await sessionStore.set("user", user.toJson());
+
+            res.redirect("/register-authenticator-app");
+
         } catch(error){
             console.log("Error Creating New User", error);
         }

@@ -1,0 +1,86 @@
+/* reset */
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+    margin: 0
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0
+}
+
+h1 {
+    font-size: 5rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+p {
+    max-width: 50vw;
+}
+
+input[type="text"],
+label,
+p {
+    font-size: 1.5rem;
+}
+
+label {
+    font-weight: bold;
+    font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+}
+
+input[type="text"] {
+    font-size: 1.0rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+}
+
+button,
+a {
+    font-size: 1rem;
+}
+
+a {
+    color: black;
+
+}
+
+button.solid,
+a.solid {
+    background-color: #350f0c;
+    padding: 0.75rem 1rem;
+    display: inline-block;
+    color: white;
+    text-decoration: none;
+    font-family: monospace;
+    border: none;
+}
+
+button.solid:hover,
+a.solid:hover {
+    background-color: black;
+}
+
+label,
+input {
+    display: block;
+}
+
+/* simple style */
+body {
+    background-color: #f44336;
+    font-family: monospace;
+    padding-left: 10vw;
+    padding-top: 5vh;
+    box-sizing: border-box;
+}
+
+nav a{
+}
