@@ -11,7 +11,7 @@ const publicRoute = require("./routes/public");
 const authorisedRoute = require("./routes/authorised");
 
 // Set port the app listens to
-const port = process.env.EXPRESS_SERVER_PORT || 3000;
+const port = process.env.PORT || 3000;
 
 // Create app
 const app = express();
