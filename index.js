@@ -1,6 +1,8 @@
 require('dotenv').config();
 
+const {StoreCX} = require("@VanillaCX/StoreCX");
 const {ResourceError} = require("@VanillaCX/Errors");
+
 const express = require("express");
 const helmet = require("helmet");
 
@@ -26,21 +28,31 @@ app.set('view engine', 'ejs');
 // Enables static access to filesystem
 app.use('/public', express.static('public'));
 
+// Mongo DB Session Storage
+app.use(StoreCX.session)
+
+// Parse application/x-www-form-urlencoded
+app.use(express.urlencoded({ extended: false }));
+
+// Parse application/json
+app.use(express.json());
+
 // Middleware for all requests
 app.use((req, res, next) => {
-    console.log(`Request at ${Date.now()}`);
-
     next();
 })
 
 // Setup entry point routing
-app.use("/me", authorisedRoute)
 app.use("/", publicRoute)
+app.use("/account", authorisedRoute)
 
 // Fallback for un-matched requests
 app.use((req, res) => {
+    console.group(`REQUEST NOT COVERED`);
+    console.log("req.originalUrl:", req.originalUrl);
+    console.groupEnd();
+
     const resourceErr = new ResourceError(req.originalUrl, 404);
-    console.error(resourceErr)
 
     res.status(resourceErr.status.code)
        .render("errors/resource", {resourceErr})

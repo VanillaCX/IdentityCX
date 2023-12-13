@@ -14,7 +14,9 @@
       "@VanillaCX:registry": "https://npm.pkg.github.com"
     },
     "dependencies": {
-      "@VanillaCX/Errors": "github:VanillaCX/Errors#v1.0.1",
+      "@VanillaCX/StoreCX": "github:VanillaCX/StoreCX",
+      "@VanillaCX/Identity": "github:VanillaCX/Identity",
+      "@VanillaCX/Errors": "github:VanillaCX/Errors",
       "dotenv": "^16.3.1",
       "ejs": "^3.1.9",
       "express": "^4.18.2",

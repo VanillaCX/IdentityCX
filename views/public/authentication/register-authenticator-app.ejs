@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Register Authenticator App</h1>
+    <ol>
+        <li>
+            <p>Open your Authenticator app and scan the QRCode. ALternatively, you can <button type="button">enter the code manually</button></p>
+            <img src="<%=qrcode%>" />
+        </li>
+        <li>
+            <p>Once registered, please enter the 6 digit code in your Authenticator app.</p>
+            <form method="post">
+                <label>One time passcode:</label>
+                <input type="text" name="otp" />
+                <button type="submit">Register</button>
+            </form>
+        </li>
+    </ol>
+    
+</body>
+</html>

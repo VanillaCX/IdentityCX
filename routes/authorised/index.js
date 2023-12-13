@@ -1,14 +1,30 @@
 const express = require('express')
 const router = express.Router()
+const {User} = require("@VanillaCX/Identity");
+const {StoreCX} = require("@VanillaCX/StoreCX");
 
-router.use((req, res, next) => {
-    console.log(`Public Access Request at :${Date.now()}`)
-   
-    next()
-})
+const blockGuests = (req, res, next) => {
+    const sessionStore = new StoreCX(req, "sessionStore");
+    const isAuthenticated = sessionStore.get("authenticated");
+
+    if(!isAuthenticated){
+        res.redirect("/sign-in")
+    } else {
+        next();
+    }
+}
+
+router.use(blockGuests);
+
+/**********************************************************************
+ * Home Page **********************************************************
+ *********************************************************************/
 
 router.get("/", (req, res) => {
-    res.render("authorised/index");
+    const sessionStore = new StoreCX(req, "sessionStore");
+    const user = new User(sessionStore.get("user"));
+
+    res.render("authorised/homepage", {screenname: user.screenname});
 })
 
 module.exports = router
