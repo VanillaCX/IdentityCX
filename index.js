@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+const path = require('path');
+
 const {StoreCX} = require("@VanillaCX/StoreCX");
 const {ResourceError} = require("@VanillaCX/Errors");
 
@@ -7,8 +9,8 @@ const express = require("express");
 const helmet = require("helmet");
 
 // Entry point routes
-const publicRoute = require("./routes/public");
-const authorisedRoute = require("./routes/authorised");
+const publicRoute = require(path.join(__dirname, 'routes', 'public'));
+const authorisedRoute = require(path.join(__dirname, 'routes', 'authorised'));
 
 // Set port the app listens to
 const port = process.env.PORT || 3000;

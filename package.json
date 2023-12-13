@@ -4,25 +4,25 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-      "dev": "nodemon index.js"
+        "dev": "nodemon index.js"
     },
     "keywords": [],
     "author": "",
     "license": "",
     "publishConfig": {
-      "@VanillaCX:registry": "https://npm.pkg.github.com"
+        "@VanillaCX:registry": "https://npm.pkg.github.com"
     },
     "dependencies": {
-      "@VanillaCX/StoreCX": "github:VanillaCX/StoreCX",
-      "@VanillaCX/Identity": "github:VanillaCX/Identity",
-      "@VanillaCX/Errors": "github:VanillaCX/Errors",
-      "dotenv": "^16.3.1",
-      "ejs": "^3.1.9",
-      "express": "^4.18.2",
-      "helmet": "^7.1.0"
+        "@VanillaCX/Errors": "github:VanillaCX/Errors",
+        "@VanillaCX/Identity": "github:VanillaCX/Identity",
+        "@VanillaCX/StoreCX": "github:VanillaCX/StoreCX",
+        "dotenv": "^16.3.1",
+        "ejs": "^3.1.9",
+        "express": "^4.18.2",
+        "helmet": "^7.1.0",
+        "path": "^0.12.7"
     },
     "devDependencies": {
-      "nodemon": "^3.0.2"
+        "nodemon": "^3.0.2"
     }
-  }
-  
+}
