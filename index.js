@@ -1,6 +1,7 @@
 require('dotenv').config();
 
 const path = require('path');
+const cors = require('cors');
 
 const {StoreCX} = require("@VanillaCX/Store");
 const {ResourceError} = require("@VanillaCX/Errors");
@@ -17,6 +18,12 @@ const port = process.env.PORT || 3000;
 
 // Create app
 const app = express();
+
+// Enable CORS for all routes
+app.use(cors({ 
+    origin: ['https://id.vanilla.cx', 'https://matter.cx'], 
+    credentials: true 
+}));
 
 // Set Helmet usage for security
 app.use(helmet());
