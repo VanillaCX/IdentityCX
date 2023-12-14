@@ -42,7 +42,7 @@ router.get("/", (req, res) => {
  *********************************************************************/
 
 router.route("/sign-in")
-    .all(blockSignedInUsers)
+    //.all(blockSignedInUsers)
     .get((req, res) => {
         res.render("public/authentication/sign-in");
     })
@@ -89,7 +89,7 @@ router.route("/sign-in")
  *********************************************************************/
 
 router.route("/two-factor-sign-in")
-    .all(blockSignedInUsers)
+    //.all(blockSignedInUsers)
     .get((req, res) => {
         res.render("public/authentication/get-otp");
 
@@ -138,7 +138,7 @@ router.route("/two-factor-sign-in")
  *********************************************************************/
 
 router.route("/register-authenticator-app")
-    .all(blockSignedInUsers)
+    //.all(blockSignedInUsers)
     .get(async (req, res) => {
         try {
             const sessionStore = new StoreCX(req, "sessionStore");
@@ -148,8 +148,8 @@ router.route("/register-authenticator-app")
             res.render("public/authentication/register-authenticator-app", {qrcode});
 
         } catch(error) {
-            res.send(error)
             console.error(error);
+            res.send(error)
         }
     })
     .post(async (req, res, next) => {
@@ -172,8 +172,8 @@ router.route("/register-authenticator-app")
 
             
         } catch(error){
-            res.send(error)
             console.error(error);
+            res.send(error)
         }
     })
 
@@ -184,7 +184,7 @@ router.route("/register-authenticator-app")
  *********************************************************************/
 
 router.route("/sign-up")
-    .all(blockSignedInUsers)
+    //.all(blockSignedInUsers)
     .get((req, res) => {
         res.render("public/authentication/sign-up");
     })
@@ -208,8 +208,8 @@ router.route("/sign-up")
             res.redirect("/register-authenticator-app");
 
         } catch(error){
-            res.send(error)
             console.error("Error Creating New User", error);
+            res.send(error)
         }
     })
 

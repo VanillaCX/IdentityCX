@@ -40,7 +40,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Middleware for all requests
-app.use((req, res, next) => {
+app.use(async (req, res, next) => {
+    console.log(req.session);
+    
     next();
 })
 
