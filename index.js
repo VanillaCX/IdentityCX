@@ -19,14 +19,10 @@ const port = process.env.PORT || 3000;
 // Create app
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors({ 
-    origin: ['https://id.vanilla.cx', 'https://matter.cx'], 
-    credentials: true 
-}));
+
 
 // Set Helmet usage for security
-app.use(helmet());
+// app.use(helmet());
 
 // Remove fingerprinting of the Server Software
 app.disable('x-powered-by');
@@ -39,6 +35,12 @@ app.use('/public', express.static('public'));
 
 // Mongo DB Session Storage
 app.use(StoreCX.session)
+
+// Enable CORS for all routes
+app.use(cors({ 
+    origin: ['https://id.vanilla.cx', 'https://matter.cx'], 
+    credentials: true 
+}));
 
 // Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
