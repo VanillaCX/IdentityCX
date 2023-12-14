@@ -10,13 +10,18 @@ router.use((req, res, next) => {
 
 // Redirect authorised users to /account page. Used as a router method.
 const blockSignedInUsers = (req, res, next) => {
-    const sessionStore = new StoreCX(req, "sessionStore");
-    const isAuthenticated = sessionStore.get("authenticated");
+    try {
+        const sessionStore = new StoreCX(req, "sessionStore");
+        const isAuthenticated = sessionStore.get("authenticated");
 
-    if(isAuthenticated){
-        res.redirect("/account")
-    } else {
-        next();
+        if(isAuthenticated){
+            res.redirect("/account")
+        } else {
+            next();
+        }
+    } catch(error) {
+        console.error(error)
+        res.send(error)
     }
 }
 
@@ -74,7 +79,7 @@ router.route("/sign-in")
 
         } catch(error){
             res.send(error)
-            console.log("Error Creating New User", error);
+            console.error("Error Creating New User", error);
         }
         
     })
@@ -123,7 +128,7 @@ router.route("/two-factor-sign-in")
             
         } catch(error){
             res.send(error)
-            console.log(error);
+            console.error(error);
         }
     })
 
@@ -144,7 +149,7 @@ router.route("/register-authenticator-app")
 
         } catch(error) {
             res.send(error)
-            console.log(error);
+            console.error(error);
         }
     })
     .post(async (req, res, next) => {
@@ -168,7 +173,7 @@ router.route("/register-authenticator-app")
             
         } catch(error){
             res.send(error)
-            console.log(error);
+            console.error(error);
         }
     })
 
@@ -204,7 +209,7 @@ router.route("/sign-up")
 
         } catch(error){
             res.send(error)
-            console.log("Error Creating New User", error);
+            console.error("Error Creating New User", error);
         }
     })
 
