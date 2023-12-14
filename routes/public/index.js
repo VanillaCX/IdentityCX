@@ -73,6 +73,7 @@ router.route("/sign-in")
             }
 
         } catch(error){
+            res.send(error)
             console.log("Error Creating New User", error);
         }
         
@@ -121,6 +122,7 @@ router.route("/two-factor-sign-in")
             res.redirect("/account");
             
         } catch(error){
+            res.send(error)
             console.log(error);
         }
     })
@@ -141,6 +143,7 @@ router.route("/register-authenticator-app")
             res.render("public/authentication/register-authenticator-app", {qrcode});
 
         } catch(error) {
+            res.send(error)
             console.log(error);
         }
     })
@@ -164,6 +167,7 @@ router.route("/register-authenticator-app")
 
             
         } catch(error){
+            res.send(error)
             console.log(error);
         }
     })
@@ -199,6 +203,7 @@ router.route("/sign-up")
             res.redirect("/register-authenticator-app");
 
         } catch(error){
+            res.send(error)
             console.log("Error Creating New User", error);
         }
     })
