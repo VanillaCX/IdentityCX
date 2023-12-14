@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const path = require('path');
 
-const {StoreCX} = require("@VanillaCX/StoreCX");
+const {StoreCX} = require("@VanillaCX/Store");
 const {ResourceError} = require("@VanillaCX/Errors");
 
 const express = require("express");

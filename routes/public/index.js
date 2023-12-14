@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const {Authenticator, User} = require("@VanillaCX/Identity");
-const {StoreCX} = require("@VanillaCX/StoreCX");
+const {StoreCX} = require("@VanillaCX/Store");
 
 router.use((req, res, next) => {
     next()

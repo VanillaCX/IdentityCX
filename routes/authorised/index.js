@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const {User} = require("@VanillaCX/Identity");
-const {StoreCX} = require("@VanillaCX/StoreCX");
+const {StoreCX} = require("@VanillaCX/Store");
 
 const blockGuests = (req, res, next) => {
     const sessionStore = new StoreCX(req, "sessionStore");

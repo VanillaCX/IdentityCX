@@ -15,7 +15,7 @@
     "dependencies": {
         "@VanillaCX/Errors": "github:VanillaCX/Errors",
         "@VanillaCX/Identity": "github:VanillaCX/Identity",
-        "@VanillaCX/StoreCX": "github:VanillaCX/StoreCX",
+        "@VanillaCX/Store": "github:VanillaCX/Store",
         "dotenv": "^16.3.1",
         "ejs": "^3.1.9",
         "express": "^4.18.2",
