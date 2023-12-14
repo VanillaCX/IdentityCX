@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const path = require('path');
-const cors = require('cors');
 
 const {StoreCX} = require("@VanillaCX/Store");
 const {ResourceError} = require("@VanillaCX/Errors");
@@ -19,17 +18,11 @@ const port = process.env.PORT || 3000;
 // Create app
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors({ 
-    origin: ['https://id.vanilla.cx', 'https://matter.cx'], 
-    credentials: true 
-}));
-
 // Set Helmet usage for security
-// app.use(helmet());
+app.use(helmet());
 
 // Remove fingerprinting of the Server Software
-//app.disable('x-powered-by');
+app.disable('x-powered-by');
 
 // Set EJS as templating engine  
 app.set('view engine', 'ejs');  
@@ -38,44 +31,7 @@ app.set('view engine', 'ejs');
 app.use('/public', express.static('public'));
 
 // Mongo DB Session Storage
-//app.use(StoreCX.session)
-
-/********************************************************************* */
-
-const expressSession = require('express-session');
-const MongoDBStore = require('connect-mongodb-session')(expressSession);
-
-const store = new MongoDBStore({
-    uri: process.env.COSMOS_CONNECTION_STRING, 
-    databaseName: process.env.SESSION_DATABASE,
-    collection: process.env.SESSION_COLLECTION,
-    
-    // Change the expires key name
-    expiresKey: `_ts`,
-    // This controls the life of the document - set to same value as expires / 1000
-    expiresAfterSeconds: 60 * 60 * 24 * 14 
-})
-
-const sessionOptions = {
-    secret: process.env.STORE_SECRET,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week
-        httpOnly: true,
-        secure: true,
-        sameSite: "None"
-    },
-    store: store,
-    saveUninitialized: true,
-    resave: false,
-    credentials: 'include'
-}
-
-app.use(expressSession(sessionOptions));
-
-
-/********************************************************************* */
-
-
+app.use(StoreCX.session)
 
 // Parse application/x-www-form-urlencoded
 app.use(express.urlencoded({ extended: false }));
